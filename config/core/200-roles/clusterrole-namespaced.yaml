@@ -22,10 +22,10 @@ metadata:
     app.kubernetes.io/name: knative-serving
 rules:
   - apiGroups: ["serving.knative.dev"]
-    resources: ["*"]
-    verbs: ["*"]
+    resources: ["configurations", "domainmappings", "revisions", "routes", "services"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete", "deletecollection"]
   - apiGroups: ["networking.internal.knative.dev", "autoscaling.internal.knative.dev", "caching.internal.knative.dev"]
-    resources: ["*"]
+    resources: ["metrics", "podautoscalers", "images", "certificates", "clusterdomainclaims", "ingresses", "serverlessservices"]
     verbs: ["get", "list", "watch"]
 ---
 kind: ClusterRole
@@ -38,10 +38,10 @@ metadata:
     app.kubernetes.io/name: knative-serving
 rules:
   - apiGroups: ["serving.knative.dev"]
-    resources: ["*"]
+    resources: ["configurations", "domainmappings", "revisions", "routes", "services"]
     verbs: ["create", "update", "patch", "delete"]
   - apiGroups: ["networking.internal.knative.dev", "autoscaling.internal.knative.dev", "caching.internal.knative.dev"]
-    resources: ["*"]
+    resources: ["metrics", "podautoscalers", "images", "certificates", "clusterdomainclaims", "ingresses", "serverlessservices"]
     verbs: ["get", "list", "watch"]
 ---
 kind: ClusterRole
@@ -54,5 +54,5 @@ metadata:
     app.kubernetes.io/name: knative-serving
 rules:
   - apiGroups: ["serving.knative.dev", "networking.internal.knative.dev", "autoscaling.internal.knative.dev", "caching.internal.knative.dev"]
-    resources: ["*"]
+    resources: ["metrics", "podautoscalers", "images", "certificates", "clusterdomainclaims", "ingresses", "serverlessservices", "configurations", "domainmappings", "revisions", "routes", "services"]
     verbs: ["get", "list", "watch"]
